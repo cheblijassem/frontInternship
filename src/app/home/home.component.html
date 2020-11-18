@@ -70,9 +70,10 @@
                             </div>
                           </div>
                           <div class="pl-4">
-                            <h5 class="title text-success">{{st.firstName}}</h5>
-                            <p>{{st.option}}</p>
-                            <a (click)='detail()' class="text-success">Learn more</a>
+                            <h5 class="title text-success">{{st.firstName}} {{st.lastName}}</h5>
+                            <p>{{st.level}}</p>
+                            <p>{{st.Option}}</p>
+                            <a (click)='detail(st)' class="text-success">Show Details</a>
                           </div>
                         </div>
                       </div>
@@ -86,46 +87,50 @@
               <ng-template ngbTabContent>
                 <div class="container-fluid">
                   <div class="row">
-                    <div class="card shadow col-md-6 shadow-lg--hover mt-5">
-                      <div class="card-body">
-                        <div class="d-flex px-3">
-                          <div>
-                            <div class="icon icon-shape bg-gradient-success rounded-circle text-white">
-                              <i class="ni ni-hat-3"></i>
-                            </div>
+                   <!-- 3awed 3ala hethi -->
+                   <div class="card shadow col-md-6 shadow-lg--hover mt-5" *ngFor="let st of terminalStudents">
+                    <div class="card-body">
+                      <div class="d-flex px-3">
+                        <div>
+                          <div class="icon icon-shape bg-gradient-success rounded-circle text-white">
+                            <i class="ni ni-hat-3"></i>
                           </div>
-                          <div class="pl-4">
-                            <h5 class="title text-success">Oussama Souissi</h5>
-                            <p>TWIN</p>
-                            <a (click)='detail()' class="text-success">Learn more</a>
-                          </div>
+                        </div>
+                        <div class="pl-4">
+                          <h5 class="title text-success">{{st.firstName}} {{st.lastName}}</h5>
+                          <p>{{st.level}}</p>
+                          <p>{{st.Option}}</p>
+                          <a (click)='detail(st)' class="text-success">Show Details</a>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
               </ng-template>
             </ngb-tab>
             <ngb-tab title="Non terminale">
               <ng-template ngbTabContent>
                 <div class="container-fluid">
                   <div class="row">
-                    <div class="card shadow col-md-6 shadow-lg--hover mt-5">
-                      <div class="card-body">
-                        <div class="d-flex px-3">
-                          <div>
-                            <div class="icon icon-shape bg-gradient-success rounded-circle text-white">
-                              <i class="ni ni-hat-3"></i>
-                            </div>
+                    <!-- 3awed 3ala hethi -->
+                   <div class="card shadow col-md-6 shadow-lg--hover mt-5" *ngFor="let st of otherStudents">
+                    <div class="card-body">
+                      <div class="d-flex px-3">
+                        <div>
+                          <div class="icon icon-shape bg-gradient-success rounded-circle text-white">
+                            <i class="ni ni-hat-3"></i>
                           </div>
-                          <div class="pl-4">
-                            <h5 class="title text-success">Oussama Souissi</h5>
-                            <p>TWIN</p>
-                            <a href="javascript:void(0)" class="text-success">Learn more</a>
-                          </div>
+                        </div>
+                        <div class="pl-4">
+                          <h5 class="title text-success">{{st.firstName}} {{st.lastName}}</h5>
+                          <p>{{st.level}}</p>
+                          <p>{{st.Option}}</p>
+                          <a (click)='detail(st)' class="text-success">Show Details</a>
                         </div>
                       </div>
                     </div>
+                  </div>
                   </div>
                 </div>
               </ng-template>
@@ -144,7 +149,8 @@
             <ng-template ngbTabContent>
               <div class="container-fluid">
                 <div class="row">
-                  <div class="card shadow col-md-6 shadow-lg--hover mt-5">
+                  <!-- 3awed 3ala hethi -->
+                  <div class="card shadow col-md-6 shadow-lg--hover mt-5" *ngFor="let ts of teachers">
                     <div class="card-body">
                       <div class="d-flex px-3">
                         <div>
@@ -153,9 +159,10 @@
                           </div>
                         </div>
                         <div class="pl-4">
-                          <h5 class="title text-success">Oussama Souissi</h5>
-                          <p>TWIN</p>
-                          <a href="javascript:void(0)" class="text-success">Learn more</a>
+                          <h5 class="title text-success">{{ts.firstName}} {{ts.lastName}}</h5>
+                          <p><strong>Degree:</strong> {{ts.degree}}</p>
+                          <p><strong>Field:</strong> {{ts.field}}</p>
+                          <a (click)='detailTeacher(ts)' class="text-success">Show Details</a>
                         </div>
                       </div>
                     </div>
@@ -177,9 +184,9 @@
                           </div>
                         </div>
                         <div class="pl-4">
-                          <h5 class="title text-success">Oussama Souissi</h5>
-                          <p>TWIN</p>
-                          <a href="javascript:void(0)" class="text-success">Learn more</a>
+                          <h5 class="title text-success">{{director.firstName}} {{director.lastName}}</h5>
+                          <p><strong>Mandate:</strong> {{director.mandate}}</p>
+                          <a (click)="detailDirector(director)" class="text-success">Show Details</a>
                         </div>
                       </div>
                     </div>
@@ -205,7 +212,7 @@
       <div class="form-group col-md-4">
         Last name: {{detailInfo.lastName}}
       </div>
-      <div class="form-group col-md-4">
+      <div class="form-group col-md-4" [hidden]="detailInfo.level ? false : true">
         Level: {{detailInfo.level}}
       </div>
     </div>
@@ -215,18 +222,33 @@
       </div>
     </div>
     <div class="row">
-      <div class="form-group col-md-12">
+      <div class="form-group col-md-12" [hidden]="detailInfo.Option ? false : true">
         Option: {{detailInfo.Option}}
       </div>
     </div>
     <div class="row">
-      <div class="form-group col-md-12">
+      <div class="form-group col-md-12" [hidden]="detailInfo.Internship ? false : true">
         Internship: {{detailInfo.Internship}}
       </div>
     </div>
     <div class="row">
       <div class="form-group col-md-12">
         Email: {{detailInfo.email}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-12" [hidden]="detailInfo.field ? false : true">
+        Field: {{detailInfo.field}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-12" [hidden]="detailInfo.degree ? false : true">
+        Degree: {{detailInfo.degree}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-12" [hidden]="detailInfo.mandate ? false : true">
+        Mandate: {{detailInfo.mandate}}
       </div>
     </div>
   </div>
