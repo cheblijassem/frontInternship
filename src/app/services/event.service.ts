@@ -8,13 +8,45 @@ import { retry, catchError } from 'rxjs/operators';
 })
 export class EventService {
 
-    private Uri = 'https://internship.free.beeceptor.com/';
+    private Uri = 'http://localhost:8888/';
 
     constructor(private http: HttpClient) { }
 
     getStudents(): Observable<any> {
         const httpOptions = { headers: new HttpHeaders({ 'Accept': 'application/json' }) };
-        return this.http.get(this.Uri + 'students')
+        return this.http.get(this.Uri + 'getStudents')
+            .pipe(
+                retry(1),
+                catchError(this.handleError)
+            );
+    }
+    getTermianlStudents(): Observable<any> {
+        const httpOptions = { headers: new HttpHeaders({ 'Accept': 'application/json' }) };
+        return this.http.get(this.Uri + 'getTerminalStudents')
+            .pipe(
+                retry(1),
+                catchError(this.handleError)
+            );
+    }
+    getOtherStudents(): Observable<any> {
+        const httpOptions = { headers: new HttpHeaders({ 'Accept': 'application/json' }) };
+        return this.http.get(this.Uri + 'getOtherStudents')
+            .pipe(
+                retry(1),
+                catchError(this.handleError)
+            );
+    }
+    getTeachers(): Observable<any> {
+        const httpOptions = { headers: new HttpHeaders({ 'Accept': 'application/json' }) };
+        return this.http.get(this.Uri + 'getTeachers')
+            .pipe(
+                retry(1),
+                catchError(this.handleError)
+            );
+    }
+    getDirector(): Observable<any> {
+        const httpOptions = { headers: new HttpHeaders({ 'Accept': 'application/json' }) };
+        return this.http.get(this.Uri + 'getDirector')
             .pipe(
                 retry(1),
                 catchError(this.handleError)
