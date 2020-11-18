@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
         mandate: ''
     };
 
+    internship: any;
     director: any;
     students: any[];
     otherStudents: any[];
@@ -32,6 +33,7 @@ export class HomeComponent implements OnInit {
     teachers: any[];
     errorMessage: string;
     showDetail = false;
+    showInternship = false;
     constructor(private _eventService: EventService) { }
 
     getStudents() {
@@ -148,5 +150,16 @@ export class HomeComponent implements OnInit {
         this.detailInfo.mandate = st.mandate;
         this.detailInfo.degree = '';
         this.detailInfo.field = '';
+    }
+    detailInternship(value) {
+        this.showInternship = true;
+        this._eventService.getInternship(value).subscribe(
+            data => {
+                this.internship = data[0];
+                console.log(data)
+            },
+            (error) => this.errorMessage = error
+        );
+
     }
 }

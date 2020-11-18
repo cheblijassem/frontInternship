@@ -52,6 +52,14 @@ export class EventService {
                 catchError(this.handleError)
             );
     }
+    getInternship(name): Observable<any> {
+        const httpOptions = { headers: new HttpHeaders({ 'Accept': 'application/json' }) };
+        return this.http.get(this.Uri + '/getStudentInternship?internship=' + name)
+            .pipe(
+                retry(1),
+                catchError(this.handleError)
+            );
+    }
 
     handleError(error) {
         let errorMessage = '';
