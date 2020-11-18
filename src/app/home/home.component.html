@@ -52,7 +52,7 @@
     <div class="split left" [ngClass]="[clicked && op1  ? 'true' : '', clicked && !op1  ? 'false' : '']">
       <div class="container-fluid scroller">
         <h1>Liste des etudiants</h1>
-        <button (click)='option1()' class="button btn btn-primary" [hidden]="clicked && op1">Consulter</button>
+        <button (click)='option1()' class="button btn btn-primary b1" [hidden]="clicked && op1">Consulter</button>
         <div class="container-fluid mb-4" *ngIf="clicked && op1">
           <ngb-tabset [justify]="'center'" class="custom-tab-content flex-column flex-md-row" type="pills">
             <ngb-tab title="All">
@@ -142,7 +142,7 @@
 
     <div class="split right" [ngClass]="[clicked && op2  ? 'true' : '', clicked && !op2  ? 'false' : '']">
       <h1>Liste des employés</h1>
-      <button (click)='option2()' class="button btn btn-success" [hidden]="clicked && op2">Consulter</button>
+      <button (click)='option2()' class="button btn btn-success b2" [hidden]="clicked && op2">Consulter</button>
       <div class="container-fluid mb-4" *ngIf="clicked && op2">
         <ngb-tabset [justify]="'center'" class="custom-tab-content flex-column flex-md-row" type="pills">
           <ngb-tab title="enseignants">

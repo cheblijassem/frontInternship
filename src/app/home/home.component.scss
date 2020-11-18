@@ -152,19 +152,19 @@
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: thin;
-  scrollbar-color: rgb(22, 63, 109) rgb(40, 185, 142);
+  scrollbar-color: #EE345A #383839;
   height: 600px;
 }
 .scroller::-webkit-scrollbar {
   width: 12px;
 }
 .scroller::-webkit-scrollbar-track {
-  background: rgb(40, 185, 142);
+  background:#EE345A;
 }
 .scroller::-webkit-scrollbar-thumb {
-  background-color: rgb(22, 63, 109);
+  background-color: #383839;
   border-radius: 20px;
-  border: 3px solid rgb(40, 185, 142);
+  border: 3px solid #EE345A;
 }
 .true {
   width: 75% !important;
@@ -183,7 +183,7 @@
   content: "";
   width: 100%;
   height: 100%;
-  background: rgba(22, 63, 109, 0.7);
+  background: rgba(56, 56, 57, 0.7);
   z-index: -1;
 }
 
@@ -198,7 +198,7 @@
   content: "";
   width: 100%;
   height: 100%;
-  background: rgba(40, 185, 142, 0.6);
+  background: rgba(238, 52, 90, 0.6);
   z-index: -1;
 }
 
@@ -276,4 +276,18 @@
 }
 .intern {
   z-index: 1000;
+}
+
+.section-shaped .shape-style-1.shape-primary {
+  background: linear-gradient(150deg, #EE345A 15%, #8f6ed5 70%, #d782d9 94%);
+}
+
+.b1{
+  background-color: #EE345A;
+}
+.b2{
+  background-color: #383839;
+}
+.b1,.b2 {
+  border: none;
 }
